@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:projeto_1/widgets/imcCalculator.dart';
 import 'home.dart';
 
 class Splash extends StatefulWidget {
@@ -15,8 +16,8 @@ class _SplashState extends State<Splash> {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     Future.delayed(const Duration(seconds: 3)).then((_) {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const ImcCalculator()));
     });
   }
 
