@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:projeto_1/widgets/imcCalculator.dart';
-import 'home.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
