@@ -94,10 +94,12 @@ class _ImcCalculatorState extends State {
                 ),
               ],
             ),
-            const Expanded(
+            Expanded(
               child: Align(
                 alignment: FractionalOffset.bottomCenter,
-                child: BottomNav(),
+                child: BottomNav(
+                  selectedTab: 0,
+                ),
               ),
             ),
           ],

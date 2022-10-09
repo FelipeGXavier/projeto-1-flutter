@@ -12,7 +12,7 @@ class App extends StatelessWidget {
       routes: {
         '/': (context) => const Splash(),
         '/home': (context) => const ImcCalculator(),
-        '/historic': (context) => const HistoricMeasure()
+        '/historic': (context) => HistoricMeasure()
       },
     );
   }

@@ -1,13 +1,24 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
+import 'package:projeto_1/widgets/historicMeasure.dart';
 
 class BottomNav extends StatefulWidget {
-  const BottomNav({super.key});
+  int _selectedTab = 0;
+
+  BottomNav({super.key, required int selectedTab}) {
+    _selectedTab = selectedTab;
+  }
 
   @override
-  State<BottomNav> createState() => _BottomNavState();
+  // ignore: no_logic_in_create_state
+  State<BottomNav> createState() => _BottomNavState(_selectedTab);
 }
 
 class _BottomNavState extends State<BottomNav> {
+  _BottomNavState(int selectedTab) {
+    _selectedIndex = selectedTab;
+  }
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -18,7 +29,11 @@ class _BottomNavState extends State<BottomNav> {
       if (index == 0) {
         Navigator.pushNamed(context, '/home');
       } else if (index == 1) {
-        Navigator.pushNamed(context, '/historic');
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HistoricMeasure(),
+            ));
       }
     });
   }
@@ -41,7 +56,6 @@ class _BottomNavState extends State<BottomNav> {
         ),
       ],
       currentIndex: _selectedIndex,
-      selectedItemColor: Colors.amber[800],
       onTap: _onItemTapped,
     );
   }

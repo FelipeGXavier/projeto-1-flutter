@@ -22,10 +22,10 @@ class _HistoricMeasureState extends State {
   @override
   void initState() {
     super.initState();
-    loadJsonData();
+    loadMeasures();
   }
 
-  Future<void> loadJsonData() async {
+  Future<void> loadMeasures() async {
     var db = DatabaseService();
 
     var result = await db.measures();
@@ -64,10 +64,10 @@ class _HistoricMeasureState extends State {
           separatorBuilder: (BuildContext context, int index) =>
               const Divider(),
         ),
-        const Expanded(
+        Expanded(
           child: Align(
             alignment: FractionalOffset.bottomCenter,
-            child: BottomNav(),
+            child: BottomNav(selectedTab: 1),
           ),
         ),
       ]),
@@ -76,7 +76,7 @@ class _HistoricMeasureState extends State {
 }
 
 class MeasureData {
-  late int? id;
+  int? id;
   late int age;
   late int height;
   late bool gender;
