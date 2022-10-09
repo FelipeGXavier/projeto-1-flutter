@@ -1,35 +1,25 @@
 import 'package:flutter/material.dart';
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({super.key});
+class BottomNav extends StatefulWidget {
+  const BottomNav({super.key});
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<BottomNav> createState() => _BottomNavState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _BottomNavState extends State<BottomNav> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
-      print(index);
       _selectedIndex = index;
+      if (index == 0) {
+        Navigator.pushNamed(context, '/home');
+      } else if (index == 1) {
+        Navigator.pushNamed(context, '/historic');
+      }
     });
   }
 
