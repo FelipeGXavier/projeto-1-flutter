@@ -29,11 +29,9 @@ class _BottomNavState extends State<BottomNav> {
       if (index == 0) {
         Navigator.pushNamed(context, '/home');
       } else if (index == 1) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HistoricMeasure(),
-            ));
+        Navigator.pushNamed(context, '/historic');
+      } else {
+        Navigator.pushNamed(context, '/tasks');
       }
     });
   }

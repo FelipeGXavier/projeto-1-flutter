@@ -1,5 +1,6 @@
 import 'package:path/path.dart';
 import 'package:projeto_1/widgets/historicMeasure.dart';
+import 'package:projeto_1/widgets/tasks.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseService {
@@ -18,7 +19,7 @@ class DatabaseService {
   Future<Database> _initDatabase() async {
     final databasePath = await getDatabasesPath();
 
-    final path = join(databasePath, 'teste.db');
+    final path = join(databasePath, 'teste2.db');
 
     return await openDatabase(
       path,
@@ -30,12 +31,14 @@ class DatabaseService {
 
   Future<void> _onCreate(Database db, int version) async {
     await db.execute(
-      'CREATE TABLE measure(id INTEGER PRIMARY KEY, height INTEGER, age INTEGER, gender INTEGER, weight REAL, imc REAL, date TEXT)',
+      'CREATE TABLE measure(id INTEGER PRIMARY KEY, height INTEGER, age INTEGER, gender INTEGER, weight REAL, imc REAL, date TEXT);',
+    );
+    await db.execute(
+      'CREATE TABLE tasks(id INTEGER PRIMARY KEY, title TEXT);',
     );
   }
 
-  // Define a funtion that inserts breeds into the database
-  Future<void> inserMeasure(MeasureData data) async {
+  Future<void> insertMeasure(MeasureData data) async {
     final db = await _databaseService.database;
     await db.insert(
       'measure',
@@ -44,10 +47,30 @@ class DatabaseService {
     );
   }
 
+  Future<void> insertTask(Task data) async {
+    final db = await _databaseService.database;
+    await db.insert(
+      'tasks',
+      data.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  Future<void> deleteTask(int id) async {
+    final db = await _databaseService.database;
+    await db.delete('tasks', where: 'id = ?', whereArgs: [id]);
+  }
+
   Future<List<MeasureData>> measures() async {
     final db = await _databaseService.database;
     final List<Map<String, dynamic>> maps = await db.query('measure');
     return List.generate(
         maps.length, (index) => MeasureData.fromMap(maps[index]));
+  }
+
+  Future<List<Task>> tasks() async {
+    final db = await _databaseService.database;
+    final List<Map<String, dynamic>> maps = await db.query('tasks');
+    return List.generate(maps.length, (index) => Task.fromMap(maps[index]));
   }
 }

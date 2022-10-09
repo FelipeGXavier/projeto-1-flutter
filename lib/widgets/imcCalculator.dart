@@ -23,7 +23,7 @@ class _ImcCalculatorState extends State {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -35,7 +35,7 @@ class _ImcCalculatorState extends State {
               shrinkWrap: true,
               children: <Widget>[
                 Form(
-                    key: _formKey,
+                    key: formKey,
                     child: GridView.count(
                       childAspectRatio: (1 / .4),
                       mainAxisSpacing: 15,
@@ -75,7 +75,7 @@ class _ImcCalculatorState extends State {
                   alignment: Alignment.center,
                   child: ElevatedButton(
                       onPressed: () {
-                        _formKey.currentState!.save();
+                        formKey.currentState!.save();
                         _saveMeasure();
                       },
                       child: const Text("Calcular")),
@@ -120,7 +120,7 @@ class _ImcCalculatorState extends State {
     });
     measure.imc = _imc;
     var db = DatabaseService();
-    await db.inserMeasure(measure);
+    await db.insertMeasure(measure);
   }
 
   double _getImc() {

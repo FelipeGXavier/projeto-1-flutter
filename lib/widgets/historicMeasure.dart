@@ -47,16 +47,21 @@ class _HistoricMeasureState extends State {
           itemBuilder: (BuildContext context, int index) {
             return Container(
               padding: const EdgeInsets.all(8.0),
-              color: Colors.amber,
+              color: Colors.cyan[200],
               child: Center(
                 child: Column(children: [
                   Text("Idade: ${_data[index].age}"),
-                  Text("Altura: ${_data[index].height}"),
-                  Text("Peso: ${_data[index].weight}"),
+                  Text("Altura: ${_data[index].height} (cm)"),
+                  Text("Peso: ${_data[index].weight} (kg) "),
                   Text(
                       "Sexo: ${_data[index].gender ? 'Masculino' : 'Feminino'}"),
                   Text("Data: ${_data[index].date}"),
-                  Text("IMC: ${_data[index].imc}")
+                  Text(
+                    "IMC: ${_data[index].imc.toStringAsFixed(2)}",
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text("Condição: ${_formatImc(_data[index].imc)}",
+                      style: const TextStyle(fontWeight: FontWeight.bold))
                 ]),
               ),
             );
@@ -72,6 +77,18 @@ class _HistoricMeasureState extends State {
         ),
       ]),
     );
+  }
+
+  String _formatImc(double value) {
+    if (value < 18.5) {
+      return 'Abaixo do peso';
+    } else if (value > 18.5 && value < 25) {
+      return 'Sobrepeso';
+    } else if (value > 30.1 && value < 40) {
+      return 'Obesidade';
+    } else {
+      return 'Obesidade severa';
+    }
   }
 }
 
