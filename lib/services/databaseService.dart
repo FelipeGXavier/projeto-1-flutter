@@ -4,7 +4,6 @@ import 'package:projeto_1/widgets/tasks.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseService {
-  // Singleton pattern
   static final DatabaseService _databaseService = DatabaseService._internal();
   factory DatabaseService() => _databaseService;
   DatabaseService._internal();
@@ -19,7 +18,7 @@ class DatabaseService {
   Future<Database> _initDatabase() async {
     final databasePath = await getDatabasesPath();
 
-    final path = join(databasePath, 'teste2.db');
+    final path = join(databasePath, 'app.db');
 
     return await openDatabase(
       path,

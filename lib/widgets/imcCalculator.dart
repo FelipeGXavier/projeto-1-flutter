@@ -188,7 +188,7 @@ class _ImcCalculatorState extends State {
         ),
         DataRow(
           cells: <DataCell>[
-            DataCell(Text('18.5 - 25')),
+            DataCell(Text('18.1 - 25')),
             DataCell(Text('Pesoa ideal')),
           ],
         ),

@@ -80,11 +80,13 @@ class _HistoricMeasureState extends State {
   }
 
   String _formatImc(double value) {
-    if (value < 18.5) {
+    if (value < 18) {
       return 'Abaixo do peso';
-    } else if (value > 18.5 && value < 25) {
-      return 'Sobrepeso';
-    } else if (value > 30.1 && value < 40) {
+    } else if (value > 18 && value <= 25) {
+      return 'Peso ideal';
+    } else if (value > 25 && value <= 30) {
+      return 'Sobrepreso';
+    } else if (value > 30 && value < 40) {
       return 'Obesidade';
     } else {
       return 'Obesidade severa';
